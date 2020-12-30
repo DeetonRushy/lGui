@@ -43,7 +43,7 @@ void Gui::Init(HWND& window, Renderer rnd)
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		{ // DRAW_START
+		{ // FRAME_START
 
 			ImGui::SetNextWindowPos(ImVec2(x, y), ImGuiCond_Once);
 			ImGui::SetNextWindowSize(ImVec2(600, 400));
@@ -57,11 +57,11 @@ void Gui::Init(HWND& window, Renderer rnd)
 				}
 
 
-			} // WINDOW_START
+			} // DRAW_END
 
 			ImGui::End();
 
-		} // DRAW_END
+		} // FRAME_END
 
 		ImGui::EndFrame();
 
