@@ -45,25 +45,25 @@ void Gui::Init(HWND& window, Renderer rnd)
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		{ // DRAW_START
+		{ // FRAME_START
 
 			ImGui::SetNextWindowPos(ImVec2(x, y), ImGuiCond_Once);
 			ImGui::SetNextWindowSize(ImVec2(600, 400));
 			ImGui::SetNextWindowBgAlpha(1.0f);
 
 			ImGui::Begin("lGuiMainWindow", &enabled, wFlags);
-			{ // WINDOW_START
+			{ // DRAW_START
 
 				if (ImGui::Button("End", ImVec2(50, 50))) {
 					enabled = false;
 				}
 
 
-			} // WINDOW_START
+			} // DRAW_START
 
 			ImGui::End();
 
-		} // DRAW_END
+		} // FRAME_END
 
 		ImGui::EndFrame();
 
