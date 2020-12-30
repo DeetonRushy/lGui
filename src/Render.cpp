@@ -1,6 +1,8 @@
 #include "Render.hpp"
 
-LPDIRECT3DDEVICE9 Renderer::Init(HWND& window)
+// class name is hard coded, if you want to change that go for it.
+
+LPDIRECT3DDEVICE9 Renderer::Init(HWND& window, const wchar_t* class_name)
 {
 	// create our window class
 
@@ -15,7 +17,7 @@ LPDIRECT3DDEVICE9 Renderer::Init(HWND& window)
 		NULL,
 		NULL,
 		NULL,
-		L"lGuiMainWindow",
+		class_name,
 		NULL
 	};
 
@@ -29,7 +31,7 @@ LPDIRECT3DDEVICE9 Renderer::Init(HWND& window)
 
 	window = CreateWindow(
 		WindowClass.lpszClassName,
-		L"lGuiMainWindow",
+		class_name,
 		WS_POPUP,
 		0,
 		0,

@@ -10,15 +10,18 @@
 #include <iostream>
 #include <Windows.h>
 #include <thread>
+#include <string>
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
+// This object handles all DirectX devices & window related operations.
 
 class Renderer
 {
 public: // FUNCS
 
-	LPDIRECT3DDEVICE9 Init(HWND& window);
+	LPDIRECT3DDEVICE9 Init(HWND& window, const wchar_t* class_name);
 
     LPDIRECT3DDEVICE9      g_pd3dDevice;
     D3DPRESENT_PARAMETERS  g_d3dpp;

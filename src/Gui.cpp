@@ -2,8 +2,6 @@
 
 void Gui::Init(HWND& window, Renderer rnd)
 {
-	enabled = true;
-
 	ImGui::CreateContext();
 
 	ImGuiIO& io = ImGui::GetIO();
@@ -26,8 +24,8 @@ void Gui::Init(HWND& window, Renderer rnd)
 
 	RECT rScreen;
 	GetWindowRect(GetDesktopWindow(), &rScreen);
-	auto x = float(rScreen.right  - 600) / 2.f;
-	auto y = float(rScreen.bottom - 400) / 2.f;
+	auto x = float(rScreen.right  - this->x) / 2.f;
+	auto y = float(rScreen.bottom - this->y) / 2.f;
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -51,7 +49,7 @@ void Gui::Init(HWND& window, Renderer rnd)
 			ImGui::SetNextWindowSize(ImVec2(600, 400));
 			ImGui::SetNextWindowBgAlpha(1.0f);
 
-			ImGui::Begin("lGuiMainWindow", &enabled, wFlags);
+			ImGui::Begin(title.c_str(), &enabled, wFlags);
 			{ // WINDOW_START
 
 				if (ImGui::Button("End", ImVec2(50, 50))) {
@@ -105,4 +103,44 @@ void Gui::Init(HWND& window, Renderer rnd)
 	ImGui::DestroyContext();
 
 	rnd.Shutdown(window);
+}
+
+void Gui::OnStart()
+{
+	x = 600;
+	y = 400;
+	title = "lGui";
+	SetState(Running);
+}
+
+void Gui::SetSize(int _x, int _y)
+{
+	if ((x != _x && y != _y) && !(_x < 0) && !(_y < 0)) {
+		y = _y;
+		x = _x;
+
+		size_set = true;
+	}
+}
+
+void Gui::SetTitle(std::string new_title)
+{
+	if (!(new_title.compare(title.c_str()))) {
+
+		title = new_title;
+
+		title_set = true;
+	}
+}
+
+void Gui::SetState(GuiState state)
+{
+	switch (state) {
+	case Running:
+		enabled = true;
+	case Stopped:
+		enabled = false;
+	default:
+		return;
+	}
 }
