@@ -59,7 +59,7 @@ void Gui::Init(HWND& window, Renderer rnd)
 				}
 
 
-			} // DRAW_START
+			} // DRAW_END
 
 			ImGui::End();
 
