@@ -50,7 +50,7 @@ void Gui::Init(HWND& window, Renderer rnd)
 			ImGui::SetNextWindowBgAlpha(1.0f);
 
 			ImGui::Begin(title.c_str(), &enabled, wFlags);
-			{ // WINDOW_START
+			{ // DRAW_START
 
 				if (ImGui::Button("End", ImVec2(50, 50))) {
 					enabled = false;
